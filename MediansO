@@ -1,0 +1,48 @@
+# Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.
+
+# The overall run time complexity should be O(log (m+n)).
+
+# Current issues: 'counting' sort does NOT account for negative values.
+
+class Solution(object):
+    def findMedianSortedArrays(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: float 
+        """
+        # adjust for runtime complexity - ditch integrated sorted()
+        # move forward with 'counting' sort for log(n+k), n - # of elements
+                                                    # k - range of elements
+        # merge the list first
+
+        nums = nums1 + nums2
+        max_val = max(nums) # find the max values of each
+       
+
+        # create count arrays for each list
+        count = [0] * (max_val + 1)
+        
+
+        # COUNT occurrences of each value in list
+        for i in nums:
+            count[i]+=1
+        
+        sortedNums = [] # empty lists for each sorted list
+
+        for i in range(len(count)):
+            for j in range(count[i]):
+                sortedNums.append(i)
+        print(sortedNums)
+        if(len(sortedNums) % 2 == 0): # check if it's EVEN # of elements
+            mid_left = sortedNums[(len(sortedNums) // 2) - 1] 
+            mid_right = sortedNums[len(sortedNums) // 2]
+            med = float(mid_left + mid_right) / 2 # find median, convert to float type to make division operator neglect integer division
+        else: # then it must be ODD
+            med = sortedNums[len(sortedNums) // 2] # find median
+            
+        
+        return med # return the median
+
+        
+        
