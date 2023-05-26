@@ -1,0 +1,26 @@
+# alternating letters string
+
+
+
+class Solution(object):
+    def mergeAlternately(self, word1, word2):
+        """
+        :type word1: str
+        :type word2: str
+        :rtype: str
+        """
+        alt = [] # empty list for output
+        # check all cases by length of string
+        if(len(word1) > len(word2)):
+            for i in range(len(word2)):
+                alt.append(word1[i] + word2[i])
+            alt = alt + [word1[len(word2):]] # add residual
+        elif(len(word1) < len(word2)):
+            for i in range(len(word1)):
+                alt.append(word1[i] + word2[i])
+            alt = alt + [word2[len(word1):]] # add residual
+        else: # == case
+            for i in range(len(word1)):
+                alt.append(word1[i] + word2[i])
+        alt = "".join(alt) # join it all in one string
+        return(alt) # return it
